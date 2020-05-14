@@ -2,7 +2,7 @@
 
 This Spring Boot service handles all backend responsibilities for the 'Black Plum Apparel' t-shirt store web application.
 
-#### Purpose
+### Purpose
 Stores catalog of products for display on frontend. When purchases are received from the frontend, payments are processed, orders are placed for fulfillment, and status updates and confirmations are sent to the customer.
 
 ### Getting started
