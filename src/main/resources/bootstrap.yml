@@ -1,0 +1,10 @@
+spring:
+
+  application:
+    name: storecatalog
+    
+  jackson: 
+    serialization: 
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+    

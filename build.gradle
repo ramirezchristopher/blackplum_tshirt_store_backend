@@ -1,0 +1,99 @@
+
+buildscript {
+
+  ext{
+    springBootVersion = '2.1.0.RELEASE'
+  }
+  	
+  repositories {
+    	
+    maven {
+	  url 'http://central.maven.org/maven2/'
+    }
+  }
+  
+  dependencies{
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath("io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE")
+    classpath("org.codehaus.groovy.modules.http-builder:http-builder:0.5.2")
+    classpath("commons-collections:commons-collections:3.2.2")
+  }
+}
+
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'jacoco'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+archivesBaseName = 'storecatalog'
+version = '1.0.0'
+
+repositories {
+	
+  maven {
+    url 'http://central.maven.org/maven2/'
+  }
+}
+
+dependencyManagement {
+  imports {
+    // Spring Boot Dependencies -> https://repo.spring.io/release/org/springframework/boot/spring-boot-dependencies/2.1.0.RELEASE/spring-boot-dependencies-2.1.0.RELEASE.pom
+    mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+        
+    // Spring Cloud -> http://projects.spring.io/spring-cloud/
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.SR2"
+  }
+}
+
+dependencies {
+  // Spring Boot Dependencies
+  implementation("org.springframework.boot:spring-boot-starter-actuator")
+  implementation("org.springframework.boot:spring-boot-starter-web") { exclude module: "spring-boot-starter-tomcat" }
+  implementation("org.springframework.boot:spring-boot-starter-jetty")
+  implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+  implementation("org.springframework.boot:spring-boot-starter-security")
+  implementation("org.springframework.boot:spring-boot-starter-freemarker")
+  implementation("org.springframework.boot:spring-boot-starter-mail")
+  
+  implementation("org.springframework.retry:spring-retry")
+  implementation("org.projectlombok:lombok")
+  implementation("com.fasterxml.jackson.module:jackson-module-parameter-names")
+  implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
+  implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+	
+  implementation("org.apache.commons:commons-lang3:3.5")
+
+  // Spring Cloud
+  implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
+  implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix")
+    
+  implementation("io.springfox:springfox-swagger2:2.8.0")
+  implementation("org.webjars:swagger-ui:3.19.0")
+  implementation("com.braintreepayments.gateway:braintree-java:2.89.0")
+  implementation("javax.validation:validation-api:2.0.1.Final")
+  implementation("org.hibernate:hibernate-validator:6.0.7.Final")
+  
+  // MailGun
+  implementation("com.mashape.unirest:unirest-java:1.4.9")
+  implementation("org.apache.httpcomponents:httpclient:4.3.6")
+  implementation("org.apache.httpcomponents:httpasyncclient:4.0.2")
+  implementation("org.apache.httpcomponents:httpmime:4.3.6")
+  implementation("org.json:json:20140107")
+        
+  testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.mockito:mockito-core:1.+")
+  testImplementation("io.rest-assured:rest-assured:3.0.1")
+  testImplementation("io.rest-assured:json-schema-validator:3.0.1")
+    
+  // Cucumber
+  testImplementation ("info.cukes:cucumber-java:1.2.5",
+    "info.cukes:cucumber-junit:1.2.5",
+    "info.cukes:cucumber-spring:1.2.5", 
+    "info.cukes:cucumber-core:1.2.5",
+    "info.cukes:cucumber-jvm-deps:1.0.5",
+    "info.cukes:gherkin:2.12.2")
+}
