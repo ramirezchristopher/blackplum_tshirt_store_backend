@@ -14,14 +14,15 @@ Requires MongoDB setup before running to store product catalog data.
    * git clone https://github.com/ramirezchristopher/blackplum_tshirt_store_backend.git
 
 **Add configuration properties**
-   * Create 'application.yml' in src/main/resources (file not included in git repo)
+   * Create 'application.yml' in src/main/resources (file not included in git repo).
+   This file supplies configuration properties for connection to MongoDB, Printful API, Mailgun, Braintree Payments, and Swagger.
 
 ### METHOD 1: Running with Gradle (Gradle Wrapper 6.1)
   1. cd <PATH_TO_PROJECT>/blackplum_tshirt_store_backend/
   2. ./gradlew bootRun
 
 
-#### METHOD 2: Running from JAR
+### METHOD 2: Running from JAR
 
 **Build**
   1. cd <PATH_TO_PROJECT>/blackplum_tshirt_store_backend/
@@ -32,6 +33,8 @@ Requires MongoDB setup before running to store product catalog data.
 
 
 ### METHOD 3: Running with Docker
+
+Two different Spring profiles are available: develop or production. To change the profile, edit Dockerfile and supply the argument to the *-Dspring.profiles.active* property.
 
 **Build Image**
   1. cd <PATH_TO_PROJECT>/blackplum_tshirt_store_backend/
