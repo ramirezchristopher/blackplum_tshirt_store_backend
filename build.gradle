@@ -5,29 +5,27 @@ buildscript {
 
     maven {
       url 'https://repo1.maven.org/maven2/'
+      url "https://plugins.gradle.org/m2/"
     }
   }
 
   dependencies{
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}")
-    classpath("io.spring.gradle:dependency-management-plugin:${spring_dependency_management_version}")
     classpath("org.codehaus.groovy.modules.http-builder:http-builder:${groovy_modules_http_builder_version}")
     classpath("commons-collections:commons-collections:3.2.2")
   }
 }
 
 plugins {
-  id "io.freefair.lombok" version "${lombok_version}"
+  id 'eclipse'
+  id 'idea'
+  id 'jacoco'
+  id 'java'
+  id 'maven'
+  id 'maven-publish'
+  id 'org.springframework.boot' version '2.2.4.RELEASE'
+  id 'io.spring.dependency-management' version "1.0.9.RELEASE"
+  id "io.freefair.lombok" version "5.1.0"
 }
-
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'jacoco'
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 archivesBaseName = 'blackplum_tshirt_store_backend'
 version = '1.0.0'
@@ -82,6 +80,8 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-parameter-names")
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+  
+  implementation("javax.xml.bind:jaxb-api:2.3.1")
 
   implementation("org.apache.commons:commons-lang3:3.5")
 

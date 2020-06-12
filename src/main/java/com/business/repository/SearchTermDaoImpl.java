@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.mongodb.core.SimpleMongoClientDbFactory;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.business.domain.SearchTerm;
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoClient;
 
 @Repository
 public class SearchTermDaoImpl implements SearchTermDao {
@@ -57,7 +57,7 @@ public class SearchTermDaoImpl implements SearchTermDao {
         save(searchTerm);
       }
       else {
-        MongoOperations mongoOps = new MongoTemplate(new SimpleMongoDbFactory(mongoClient, databaseName));
+        MongoOperations mongoOps = new MongoTemplate(new SimpleMongoClientDbFactory(mongoClient, databaseName));
         Update update = new Update();
         
         update.set("count", searchTerm.getCount());

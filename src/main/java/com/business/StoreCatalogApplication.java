@@ -20,7 +20,7 @@ public class StoreCatalogApplication {
 
     return new RestTemplate();
   }
-  
+
   public static void main(String[] args) {
 
     SpringApplication.run(StoreCatalogApplication.class, args);
